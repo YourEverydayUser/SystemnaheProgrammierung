@@ -24,60 +24,37 @@ static void assert_pos(model_pos_t pos)
 static void set_state(model_t *instance, model_pos_t pos, model_state_t state)
 {
     assert_pos(pos);
-
-    // Instructions to the students:
     // set the field of the board to the new state
-    // BEGIN-STUDENTS-TO-ADD-CODE
-
-
-    
-
-
-    
-    // END-STUDENTS-TO-ADD-CODE
+    instance->board[pos.col][pos.row] = state;
 }
 
-// public API function which is documented in the header file.
 model_pos_t model_pos(size_t row, size_t col)
 {
     return (model_pos_t){row, col};
 }
 
-// public API function which is documented in the header file.
 void model_init(model_t *instance)
 {
     assert(instance);
-
-    // Instructions to the students:
     // set all fields of the board to model_state_none
-    // BEGIN-STUDENTS-TO-ADD-CODE
+    int i, j;
 
-
-
-
-
-
-    // END-STUDENTS-TO-ADD-CODE
+    for(i=0; i < MODEL_SIZE; i++) {
+        for(j=0; j < MODEL_SIZE; j++) {  
+            set_state(instance, model_pos(i, j), model_state_none);
+        }
+    }
 }
 
-// public API function which is documented in the header file.
 model_state_t model_get_state(model_t *instance, model_pos_t pos)
 {
     assert(instance);
     assert_pos(pos);
-
-    // Instructions to the students:
     // replace the stub implementation my access to the field at the given position.
-    // BEGIN-STUDENTS-TO-ADD-CODE
-
-
-    return model_state_none; // stub 
-
-
-    // END-STUDENTS-TO-ADD-CODE
+    return instance->board[pos.row][pos.col];
 }
 
-// public API function which is documented in the header file.
+
 model_line_t model_get_win_line(model_t *instance)
 {
     assert(instance);
@@ -120,7 +97,6 @@ model_line_t model_get_win_line(model_t *instance)
     return (model_line_t) { model_dir_none, { 0, 0 } }; 
 }
 
-// public API function which is documented in the header file.
 model_state_t model_get_winner(model_t *instance)
 {
     assert(instance);
@@ -131,23 +107,20 @@ model_state_t model_get_winner(model_t *instance)
         ;
 }
 
-// public API function which is documented in the header file.
 int model_can_move(model_t *instance)
 {
     assert(instance);
     if (model_get_winner(instance) == model_state_none) {
-        // Instructions to the students:
         // scan all fields: return 1 with first field which equals model_state_none
-        // BEGIN-STUDENTS-TO-ADD-CODE
+        int i, j;
 
-
-
-
-
-
-
-
-        // END-STUDENTS-TO-ADD-CODE
+        for(i=0; i < MODEL_SIZE; i++) {
+            for(j=0; j < MODEL_SIZE; j++) {  
+                if(model_get_state(instance, model_pos(i, j)) == model_state_none) {
+                    return 1;
+                }
+            }
+        }
     }
     return 0;
 }
