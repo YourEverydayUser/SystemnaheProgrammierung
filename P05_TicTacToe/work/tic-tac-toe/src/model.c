@@ -25,7 +25,7 @@ static void set_state(model_t *instance, model_pos_t pos, model_state_t state)
 {
     assert_pos(pos);
     // set the field of the board to the new state
-    instance->board[pos.col][pos.row] = state;
+    instance->board[pos.row][pos.col] = state;
 }
 
 model_pos_t model_pos(size_t row, size_t col)
