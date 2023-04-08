@@ -16,8 +16,6 @@
 #include "list.h"
 #include "person.h"
 
-node_t anchor;
-
 /**
  * @brief Main entry point.
  * @param[in] argc  The size of the argv array.
@@ -29,14 +27,26 @@ void test(node_t node);
 int main(int argc, char* argv[])
 {
 	// BEGIN-STUDENTS-TO-ADD-CODE
-	person_t person = {"Kuster", "Fabian", 28};
-	node_t anchor = {person, 1250};
 	test(anchor);
+
+	person_t p1 = {"Kuster", "Fabian", 28};
+	person_t p2 = {"Fritz", "Sybille", 30};
+	person_t p3 = {"Hansmann", "Danai", 28};
+
+	addNode(p1);
+	addNode(p2);
+	addNode(p3);
+	printNodes();
     
 	// END-STUDENTS-TO-ADD-CODE
     return EXIT_SUCCESS;
 }
 
 void test(node_t node) {
-	printf("%s", node.content.name);
+	
+	if(*node.content.name != '\0') { //dereference pointer and get element @ node.content.name
+		printf("%s", node.content.name);
+	} else {
+		printf("This is the root");
+	}
 }

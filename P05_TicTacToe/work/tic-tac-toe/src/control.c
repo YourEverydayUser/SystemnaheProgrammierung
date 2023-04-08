@@ -152,3 +152,29 @@ control_line_t control_get_win(control_t *instance)
         return (control_line_t) { { 1, 1, 1 } };
     }
 }
+
+    node_t currentNode = anchor;
+    node_t* nP = malloc(sizeof(node_t));
+    node_t newNode = {person, &anchor};
+    *nP = newNode;
+
+    if(isListEmpty()) {
+        anchor.next = &newNode;
+    } else {
+        while(currentNode.next != &anchor) {
+            currentNode = *currentNode.next;
+        }
+        currentNode.next = &newNode;
+    }
+
+        assert(root);
+    node_t *p = root;
+    while(p->next) {
+        p = p->next;
+    }
+    p->next = malloc(sizeof(node_t));
+    if(p->next) {
+        *(p->next) = (node_t) {person, NULL};
+    }
+    return *p->next;  
+

@@ -7,4 +7,9 @@ typedef struct node {
   struct node *next;           
 } node_t;
 
+static node_t anchor = {NULL, &anchor};
+
+void addNode(person_t person);
+void printNodes();
+
 #endif
