@@ -9,4 +9,7 @@ typedef struct {
   unsigned int age;
 } person_t;
 
+int person_compare(const person_t *a, const person_t *b);
+void print_Person(const person_t *p);
+
 #endif
