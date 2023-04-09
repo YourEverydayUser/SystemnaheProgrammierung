@@ -7,9 +7,10 @@ typedef struct node {
   struct node *next;           
 } node_t;
 
-static node_t anchor = {NULL, &anchor};
-
-void addNode(person_t person);
-void printNodes();
+void addNode(node_t *root, const person_t person);
+void printNodes(node_t *root);
+void removeNode(node_t *root, const person_t personToRemove);
+void clearList(node_t *root);
+int getListSize();
 
 #endif

@@ -18,6 +18,10 @@
 #include <assert.h>
 #include <CUnit/Basic.h>
 #include "test_utils.h"
+#include "/home/vagrant/snp_solutions/git@github.com:YourEverydayUser/SystemnaheProgrammierung.git/P06_Personen_Verwaltung_Linked_List/work/personen-verwaltung/src/person.h"
+#include "/home/vagrant/snp_solutions/git@github.com:YourEverydayUser/SystemnaheProgrammierung.git/P06_Personen_Verwaltung_Linked_List/work/personen-verwaltung/src/list.h"
+
+
 
 #ifndef TARGET // must be given by the make file --> see test target
 #error missing TARGET define
@@ -35,9 +39,12 @@
 
 #define TRACE_INDENT "\n                " ///< allow for better stdout formatting in case of error
 
+static node_t anchor;
+
 // setup & cleanup
 static int setup(void)
 {
+
     remove_file_if_exists(OUTFILE);
     remove_file_if_exists(ERRFILE);
     return 0; // success
@@ -53,40 +60,50 @@ static int teardown(void)
 // tests
 static void test_person_compare(void)
 {
-	// BEGIN-STUDENTS-TO-ADD-CODE
 	// arrange
-
+	person_t p1 = {"Kuster", "Fabian", 28};
+	person_t p2 = {"Fritz", "Sybille", 30};
 	// act
 	CU_FAIL("missing test");
-	
+	int test = person_compare(&p1, &p2);
 	// assert
-	
-	// END-STUDENTS-TO-ADD-CODE
+	assert(test < 0);
 }
 
 static void test_list_insert(void)
 {
-	// BEGIN-STUDENTS-TO-ADD-CODE
 	// arrange
+	person_t p5 = {"Clemens", "Karl", 20};
+	person_t p6 = {"Reinhard", "Michael", 30};
+	node_t *aP = 0;
+	aP = &anchor;
 
 	// act
 	CU_FAIL("missing test");
-	
+	addNode(aP, p5);
+	addNode(aP, p6);
 	// assert
+	assert(getListSize() == 2);
 	
-	// END-STUDENTS-TO-ADD-CODE
 }
 
 static void test_list_remove(void)
 {
 	// BEGIN-STUDENTS-TO-ADD-CODE
 	// arrange
+	person_t p5 = {"Clemens", "Karl", 20};
+	person_t p6 = {"Reinhard", "Michael", 30};
+	node_t *aP = 0;
+	aP = &anchor;
 
 	// act
 	CU_FAIL("missing test");
+	addNode(aP, p5);
+	addNode(aP, p6);
+	removeNode(aP, p5);
 	
 	// assert
-	
+	assert(getListSize() == 1);
 	// END-STUDENTS-TO-ADD-CODE
 }
 
@@ -94,12 +111,27 @@ static void test_list_clear(void)
 {
 	// BEGIN-STUDENTS-TO-ADD-CODE
 	// arrange
+	person_t p1 = {"Kuster", "Fabian", 28};
+	person_t p2 = {"Fritz", "Sybille", 30};
+	person_t p3 = {"Hansmann", "Danai", 28};
+	person_t p4 = {"Steiner", "Tobias", 25};
+	person_t p5 = {"Clemens", "Karl", 20};
+	person_t p6 = {"Kuster", "Michael", 30};
+	node_t *aP = 0;
+	aP = &anchor;
 
 	// act
 	CU_FAIL("missing test");
+	addNode(aP, p1);
+	addNode(aP, p2);
+	addNode(aP, p3);
+	addNode(aP, p4);
+	addNode(aP, p5);
+	addNode(aP, p6);
+	clearList(aP);
 	
 	// assert
-	
+	assert(getListSize()==0);
 	// END-STUDENTS-TO-ADD-CODE
 }
 
